@@ -1,1 +1,0 @@
-# newrich-portal
