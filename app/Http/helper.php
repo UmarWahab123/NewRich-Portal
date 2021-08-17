@@ -12,7 +12,7 @@ if(!function_exists('myemail')){
             'Messages' => [
                 [
                     'From' => 'qaiserabbas101@gmail.com',
-                    'To' => 'qaiserabbas101@gmail.comsfsfd',
+                    'To' => 'qaiserabbas101@gmail.asfasfdsfd',
                     'Subject' => $subject,
                     'HTMLPart' => $email_template
                 ]
