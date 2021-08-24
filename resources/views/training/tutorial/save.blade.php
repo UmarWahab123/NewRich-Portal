@@ -1,8 +1,9 @@
 @extends('layout.header')
 @section('css')
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/file-uploaders/dropzone.min.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-file-uploader.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/plugins/forms/form-validation.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/file-uploaders/dropzone.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/plugins/forms/form-file-uploader.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/forms/select/select2.min.css')}}">
 @endsection
 @section('content')
 @section('breadcrumb')
@@ -11,6 +12,7 @@
 <ol class="breadcrumb">
 <li class="breadcrumb-item"><a href="{{url('/tutorials')}}">Tutorials</a>
 </li>
+
 <li class="breadcrumb-item"><a href="#">{{$data['page_title']}}</a>
 </li>
 </ol>
@@ -23,50 +25,93 @@
 <form action="{{ url('/savetutorial') }}" class="" id="form_submit" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row">
-            <div class="col-md-4 ml-1">
+            <div class="col-md-4 col-12">
             <div class="form-group">
-                <label>
-              Title
-                </label>
-                <input  class="form-control" name="title" type="text" value="{{(isset($data['results']->name) ? $data['results']->name : '')}}">
+                <label>Title </label>
+                <input  class="form-control" name="title" type="text" value="{{(isset($data['results']->id) ? $data['results']->title : '')}}">
                 </div>
+            </div>
+            <div class="col-md-4 col-12">
                 <div class="form-group">
+                    <label>Share</label>
+                    <select class="form-control" name="share" data-option-id="{{(isset($data['results']->id) ? $data['results']->share : '')}}">
+                        <option value="">Select</option>
+                        <option>ON</option>
+                        <option>OFF</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label>Access Control</label>
+                    <select class="form-control" name="access_control" data-option-id="{{(isset($data['results']->id) ? $data['results']->access_control : '')}}">
+                        <option value="">Select</option>
+                        <option>All</option>
+                        <option> Available to All Members</option>
+                        <option> Exclusive to Premium Members</option>
+                        <option>Monthly Only</option>
+                        <option>Yearly Only</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <div class="form-group">
+                <label>Tags  </label>
+                <select name="tags[]" class="tags form-control" multiple>
+                    <optgroup label="LifeStyle">
+                        <option>Love</option>
+                        <option>World</option>
+                        <option>Motivation</option>
+                    </optgroup>
+                    <optgroup label="Mindset">
+                        <option>Journey</option>
+                        <option>Resistance</option>
+                        <option>Process</option>
+                    </optgroup>
+                    <optgroup label="Yoga">
+                        <option>Stamina</option>
+                        <option>Stronger</option>
+                        <option>Resilience</option>
+                    </optgroup>
+                </select>
+                {{--<input  class="form-control" name="tags" type="text" value="{{(isset($data['results']->tags) ? $data['results']->tags : '')}}">--}}
+            </div>
+        </div>
+        <div class="col-md-8 col-12">
+            <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="description">{{(isset($data['results']->description) ? $data['results']->description : '')}}</textarea>
-                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group" >
+                <label>
+                    Upload File
+                </label>
+                <div  action="{{url('/upload_file?url=-uploads-tutorials') }}" class="dropzone" id="test">
+                    <div class="dz-message">Drop files here or click to upload.</div>
+                </div>
+            </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group">
-                    <label>
-                    Tags
-                    </label>
-                    <input  class="form-control" name="tags" type="text" value="{{(isset($data['results']->tags) ? $data['results']->tags : '')}}">
-                </div>
-
-                <div class="form-group" >
-                    <label>
-                    Upload Video
-                    </label>
-                    <div  action="{{url('/upload_file?url=-uploads-tutorials') }}" class="dropzone" id="test">
-                     <div class="dz-message">Drop files here or click to upload.</div>
-                    </div>
-                </div>
+                @if(isset($data['results']->id))
+                <img class="img-fluid mt-3" src="{{$data['results']->file_upload }}">
+                @endif
             </div>
-
-        </div>
-
-   <input class="form-control" name="text" type="file_upload" value="{{(isset($data['results']->id) ? $data['results']->id : '')}}">
+    </div>
+   <input class="form-control" type="hidden" name="type" value="Tutorial">
+   <input class="form-control" type="hidden" name="file_upload" value="{{(isset($data['results']->id) ? $data['results']->file_upload : '')}}">
    <input class="form-control" name="id" type="hidden" value="{{(isset($data['results']->id) ? $data['results']->id : '')}}">
    <button type="submit" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1">Save Changes</button>
-
-</input>
-</input>
 </form>
 
 </div>
 </div>
-
 
 </section>
 </div>
@@ -74,14 +119,32 @@
 
 
     @section('js')
-    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
-    <script src="../../../app-assets/vendors/js/extensions/dropzone.min.js"></script>
+        <script src="{{asset('/app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
+        <script src="{{asset('/app-assets/vendors/js/extensions/dropzone.min.js')}}"></script>
+        <script src="{{asset('/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+        <script src="{{asset('/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+
     <script type="text/javascript">
+        $('select[name="tags[]"] option').each(function() {
+            var tagval=$(this).text();
+            var tagsarray='<?=json_encode($tags); ?>';
+            var tagsarray = JSON.parse(tagsarray); //
+            const isInArray = tagsarray.includes(tagval);
+            if(isInArray){
+                console.log(tagsarray);
+                $(this).attr('selected',true);
+            }
+        });
+
+        tags();
+
+
     $('.tariningR').addClass('sidebar-group-active');
     $('.tutorials').addClass('active');
     Dropzone.autoDiscover = false;
     var fileList = new Array;
     var fileListinput = new Array;
+    var uploadpath="";
     var i =0;
     $('#test').dropzone({
         paramName: 'file',
@@ -92,16 +155,20 @@
             "justinbieber.jpg"==e.name?o("Naha, you don't."): o()
         },
         success:function(file, serverFileName) {
+            uploadpath=serverFileName;
+//            console.log('test',file.name);
             fileList[i] = {"serverFileName" : serverFileName, "fileName" : file.name,"fileId" : i };
             fileListinput[i] = 'uploads/tutorials/'+serverFileName;
-            console.log(fileListinput);
-            $('input[name="file_upload"]').val(fileListinput);
+            var filename='uploads/tutorials/'+serverFileName;
+//            console.log(fileListinput);
+            $('input[name="file_upload"]').val(serverFileName);
             i++;
         },
                   removedfile:function(file) {
                     var path ="/uploads/tutorials/";
                     var rmvFile = "";
                     console.log(fileList);
+                    console.log('deele',file.name);
                     for(f=0;f<fileList.length;f++){
                         if(fileList[f].fileName == file.name)
                         {
@@ -125,24 +192,10 @@
     });
     $('#form_submit').validate({
     rules: {
-    'role_id': {
+    'title': {
     required: true
     },
-    'first_name': {
-    required: true
-    },
-    'last_name': {
-    required: true
-    },
-    'email': {
-    required: true,
-    email: true
-    },
-
-    'cpassword': {
-    equalTo: '.password'
-    },
-    'status': {
+    'description': {
     required: true
     },
     }

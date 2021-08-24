@@ -1,6 +1,6 @@
 @extends('layout.header')
 @section('css')
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/plugins/forms/form-validation.css')}}">
 @endsection
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">Ennegramm</h2>
@@ -51,7 +51,7 @@
 </div>
 @endsection
 @section('js')
-    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+  <script src="{{asset('/app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
     <script type="text/javascript">
         $('.enneagram').addClass('sidebar-group-active');
         $('.personalities').addClass('active');

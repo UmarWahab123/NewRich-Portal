@@ -64,8 +64,7 @@
 </div>
 
 @section('js')
-<script src="../../../app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
-
+  <script src="{{asset('/app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.enneagram').addClass('sidebar-group-active');

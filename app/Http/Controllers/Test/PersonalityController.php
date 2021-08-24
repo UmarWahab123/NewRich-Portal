@@ -33,7 +33,6 @@ class PersonalityController extends Controller
 
     }
     public  function personalities(){
-        dd(asset('/images/image.png'));
         $data['page_title'] = "Personalities";
         $data['results'] =  Personality::get();
         return view('personality.index',compact('data'));

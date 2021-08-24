@@ -1,8 +1,8 @@
 @extends('layout.header')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/sweetalert2.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sweet-alerts.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/plugins/extensions/ext-component-sweet-alerts.css')}}">
 @endsection
 @section('content')
     {{ csrf_field() }}
@@ -19,10 +19,10 @@
                                         <thead>
                                              <tr role="row">
 		                                        <th>Sr No</th>
+		                                        <th> Image</th>
 		                                        <th> Title</th>
 		                                        <th> Description</th>
 		                                        <th> Tags</th>
-		                                        <th> Videos</th>
                                                 <th>Action</th>
                                    			 </tr>
                                         </thead>
@@ -30,19 +30,29 @@
                                            @foreach($data['results'] as $key=>$value)
                                    		 <tr>
                                         <td> {{$key+1}}</td>
+                                        <td>
+                                            <a href="{{url('/trainingdetail/'.$value->id)}}">
+                                            <img src="{{$value->file_upload}}" class="img-fluid" width="100px"></a></td>
                                         <td>{{$value->title}}</td>
                                         <td>{{$value->description}}</td>
                                         <td>{{$value->tags}}</td>
-                                        <td>{{$value->upload_file}}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
                                                     <i data-feather="more-vertical"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{url('/classroom/'.$value->id)}}">
+                                                    <a class="dropdown-item" href="{{url('/tutorial/'.$value->id)}}">
                                                         <i data-feather="edit-2" class="mr-50"></i>
                                                         <span>Edit</span>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{{url('/trainingdetail/'.$value->id)}}">
+                                                        <i data-feather="file-text" class="mr-50"></i>
+                                                        <span>Detail</span>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{{url('/page/'.$value->id)}}">
+                                                        <i data-feather="plus" class="mr-50"></i>
+                                                        <span>Add Page</span>
                                                     </a>
                                                     <a data-href="{{url('/deleteclassroom/'.$value->id)}}"   data-toggle="modal" data-target="#confirm-delete" class="dropdown-item" href="javascript:void(0);">
                                                         <i data-feather="trash" class="mr-50"></i>
@@ -67,8 +77,7 @@
 
 
 @section('js')
-    <script src="../../../app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}">
     <script type="text/javascript">
         $(document).ready(function() {
             $('.tariningR').addClass('sidebar-group-active');

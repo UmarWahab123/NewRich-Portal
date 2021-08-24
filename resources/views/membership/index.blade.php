@@ -1,8 +1,8 @@
 @extends('layout.header')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/sweetalert2.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sweet-alerts.css">
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/colors.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/plugins/extensions/ext-component-sweet-alerts.css')}}">
 @endsection
 @section('content')
     {{ csrf_field() }}
@@ -65,8 +65,7 @@
 
 
 @section('js')
-    <script src="../../../app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}">
     <script type="text/javascript">
         $(document).ready(function() {
             $('.memberships').addClass('active');

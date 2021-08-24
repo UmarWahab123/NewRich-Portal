@@ -4,12 +4,15 @@
 </footer>
 <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 @if(Session::has('message'))
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.min.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-toastr.css">
-<script src="../../../app-assets/vendors/js/extensions/toastr.min.js"></script>
-<script src="../../../app-assets/js/scripts/extensions/ext-component-toastr.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/extensions/toastr.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/css/plugins/extensions/ext-component-toastr.css')}}">
+    <script src="{{asset('/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
+    <script src="{{asset('/app-assets/js/scripts/extensions/ext-component-toastr.js')}}"></script>
 @endif
 <script>
+    $('select[data-option-id]').each(function() {
+        $(this).val($(this).data('option-id'));
+    });
     $('.setmode').click(function () {
                             $.ajax({
                             type:'get',
@@ -30,7 +33,16 @@
                             }
                         });
                     });
-
+    function tags() {
+        tags = $('.tags'),
+                tags.wrap('<div class="position-relative"></div>').select2({
+                    dropdownAutoWidth: true,
+                    width: '100%',
+                    maximumSelectionLength: 3,
+                    dropdownParent: tags.parent(),
+                    placeholder: 'Select maximum 3 items'
+                });
+    }
     $('.logout').click(function () {
         $('#frm-logout').submit();
     });

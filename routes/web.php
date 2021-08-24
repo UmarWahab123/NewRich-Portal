@@ -81,9 +81,14 @@ Route::group(['middleware' => 'auth'], function()
     //Tutorials
     Route::get('/tutorials', [App\Http\Controllers\Training\TutorialController::class, 'tutorials']);
     Route::get('/tutorial/{id?}', [App\Http\Controllers\Training\TutorialController::class, 'tutorial']);
+    Route::get('/trainingdetail/{id?}', [App\Http\Controllers\Training\TutorialController::class, 'trainingdetail']);
     Route::post('/savetutorial', [App\Http\Controllers\Training\TutorialController::class, 'savetutorial']);
     Route::post('/upload_file', [App\Http\Controllers\Training\TutorialController::class, 'upload_file']);
     Route::post('/deletefiles', [App\Http\Controllers\Training\TutorialController::class, 'deletefiles']);
-
+    //Lesson
+    Route::post('/lessonmodal', [App\Http\Controllers\Training\LessonController::class, 'lessonmodal']);
+    Route::post('/savelesson', [App\Http\Controllers\Training\LessonController::class, 'savelesson']);
+    Route::get('/deletelesson/{id?}', [App\Http\Controllers\Training\LessonController::class, 'deletelesson']);
+    Route::get('/page/{training_id}/{id?}', [App\Http\Controllers\Training\LessonController::class, 'page']);
     Route::get('/deletetutorial/{id}', [App\Http\Controllers\Training\TutorialController::class, 'deletetutorial']);
 });
