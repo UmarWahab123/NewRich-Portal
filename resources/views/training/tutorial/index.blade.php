@@ -32,8 +32,15 @@
                                    		 <tr>
                                         <td> {{$key+1}}</td>
                                         <td>
-                                            <a href="{{url('/trainingdetail/'.$value->id)}}">
-                                            <img src="{{$value->file_upload}}" class="img-fluid" width="100px"></a></td>
+                                            @if($value->type=="video")
+                                                <video height="150px" class="w-100 video-style"  controls poster="https://newrich.com/wp-content/themes/betheme/images/newrich-logo.png">
+                                                    <source  src="{{$value->file_upload}}" type="video/mp4">
+                                                </video>
+                                            @else
+                                                <a href="{{url('/trainingdetail/'.$value->id)}}">
+                                                    <img src="{{$value->file_upload}}" class="img-fluid" width="100px"></a>
+                                            @endif
+                                          </td>
                                         <td> <span class="blue-color">{{$value->title}}</span></td>
                                         <td>{{mb_strimwidth($value->description, 0, 30, "...")}}</td>
                                         <td> <span class="darkgreen-color">{{$value->tags}}</span></td>

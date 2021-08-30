@@ -72,3 +72,32 @@ li.breadcrumb-item a {
 .content-header-title {
     text-transform: capitalize;
 }
+.video-style {
+    object-fit: fill;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    -moz-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+.video-style
+{
+    background-color: #ffcccc; /* background gradient */
+    background-image: linear-gradient(top, #fff, #fcc);
+    background-image: -moz-linear-gradient(top, #fff, #fcc);
+    background-image: -webkit-linear-gradient(top, #fff, #fcc);
+    background-image: -o-linear-gradient(top, #fff, #fcc);
+    background-image: -ms-linear-gradient(top, #fff, #fcc);
+}
+.video-style {
+    box-shadow: 0 0 10px #ccc;
+}
+.video-style:hover,
+.video-style:focus
+{
+    box-shadow: 0 0 20px #f88;
+}

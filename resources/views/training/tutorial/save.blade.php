@@ -108,7 +108,14 @@
             </div>
             <div class="col-md-4">
                 @if(isset($data['results']->id))
-                <img class="img-fluid mt-3" src="{{$data['results']->file_upload }}">
+
+                    @if($type=="video")
+                        <video height="250px" class="w-100 video-style"  controls poster="https://newrich.com/wp-content/themes/betheme/images/newrich-logo.png">
+                            <source  src="{{$data['results']->file_upload }}" type="video/mp4">
+                        </video>
+                    @else
+                        <img class="img-fluid mt-3" src="{{$data['results']->file_upload }}">
+                    @endif
                 @endif
             </div>
     </div>
@@ -154,7 +161,11 @@
         });
 
         tags();
-        DropzoneSinglefunc('dropzoneupload','.png,.jpg,.jpge',1);
+        if(type=="video"){
+            DropzoneSinglefunc('dropzoneupload','.avi,.mp4,.mkv',1);
+        }else{
+            DropzoneSinglefunc('dropzoneupload','.png,.jpg,.jpge',1);
+        }
     $('#form_submit').validate({
     rules: {
     'title': {
