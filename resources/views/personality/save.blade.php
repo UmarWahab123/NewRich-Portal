@@ -14,7 +14,7 @@
     </div>
 @endsection
 @section('content')
-    <div class="content-body">
+<div class="content-body">
     <section id="basic-input">
                     <div class="row">
                         <div class="col-md-12">
@@ -45,8 +45,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
+            </div>
  </section>
 </div>
 @endsection

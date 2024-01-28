@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::post('/userlogin', [App\Http\Controllers\Auth\LoginController::class, 'userlogin']);
-Route::group(['middleware' => 'auth'], function()
-{
+// Route::group(['middleware' => 'auth'], function()
+// {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('Dashboards');
     // Role
     Route::get('/deleterole/{id}',[App\Http\Controllers\User\UserController::class, 'deleterole']);
@@ -91,4 +91,4 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('/savelesson', [App\Http\Controllers\Training\LessonController::class, 'savelesson']);
     Route::get('/deletelesson/{id?}', [App\Http\Controllers\Training\LessonController::class, 'deletelesson']);
     Route::get('/page/{training_id}/{id?}', [App\Http\Controllers\Training\LessonController::class, 'page']);
-});
+// });
